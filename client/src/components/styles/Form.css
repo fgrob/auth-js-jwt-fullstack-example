@@ -1,0 +1,53 @@
+:root {
+    justify-content: center;
+}
+
+
+  .form-container {
+    /* width: 100%; */
+    padding: 1rem;
+    /* border: 1px solid #ccc; */
+    border-radius: 8px;
+  }
+  
+  form {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 300px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  label,
+  input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .error-message {
+    color: #ff0000; /* Color rojo para el texto del error */
+    font-size: 16px; /* Tamaño de fuente del mensaje de error */
+    /* font-weight: bold; Texto en negrita para resaltarlo */
+    margin: 10px 0; /* Margen superior e inferior para separar del contenido circundante */
+  }
+
+  .success-message {
+    color: green;
+    font-size: 16px;
+    margin: 10px 0;
+  }

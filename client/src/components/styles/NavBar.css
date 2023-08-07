@@ -1,0 +1,32 @@
+.header {
+    background-color: black;
+    color: #fff;
+    padding: 1rem;
+    top: 0;
+    width: 100%;
+    position: fixed;
+  }
+  
+  .nav-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .nav-container li {
+    margin-right: 1rem;
+  }
+    
+  .nav-container a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-container a:hover {
+    color: gray;
+  }
+
+  .user-sector {
+    margin-left: auto;
+  }
