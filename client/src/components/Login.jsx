@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './styles/Form.css'
 import authService from '../services/auth.service';
 import { useNavigate } from 'react-router-dom';
@@ -12,13 +12,19 @@ const Login = () => {
     const navigate = useNavigate();
     const { setCurrentUser } = useUserContext();
 
+    const usernameInputRef = useRef(null);
+
+    useEffect(() => {
+        usernameInputRef.current.focus();
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         authService.signin(username, password)
             .then(() => {
                 setCurrentUser(authService.getCurrentUser());
-                navigate('/');
+                navigate('/profile');
             })
             .catch((err) => {
                 setMessage('Error ' + err.response.request.status + '. ' + err.response.data.message);
@@ -36,6 +42,8 @@ const Login = () => {
                         id="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        ref={usernameInputRef}
+
                     />
                 </div>
                 <div>

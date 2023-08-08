@@ -42,10 +42,6 @@ const getCurrentUser = () => {
 
 const refreshAccessToken = (refreshToken) => {
     return axios.post(API_URL + 'refreshtoken', {refreshToken})
-        // .then(res => res.data.accessToken) // extraemos el accestoken de la respuesta y lo enviamos. Si no existe la propiedad en la respuesta, entonces esto mismo nos enviará al catch
-        // .catch(err => {
-        //     throw err
-        // });
 }
 
 const logout = () => {
@@ -54,7 +50,6 @@ const logout = () => {
         .then((res) => {
             console.log(res.data.message)
             localStorage.removeItem('user');
-            window.location.reload(); 
         })
 };
 

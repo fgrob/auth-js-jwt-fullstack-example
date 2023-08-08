@@ -14,17 +14,15 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route exact path={"/"} element={<div>Pagina de Inicio. No requiere permisos</div>} />
+        <Route exact path={"/"} element={<div>Pagina de Inicio. No requiere estar logeado</div>} />
         <Route exact path={"/pot"} element={"mensaje"} /> 
         <Route exact path={"/login"} element={<Login />} />
         <Route exact path={"/register"} element={<Register />} />
         <Route exact path={"/profile"} element={<UserProfile />} />
-        <Route path="/admin" element={<AdminContent />} />
-        <Route path="/moderator" element={<ModeratorContent />} />
+        <Route path="/admin" element={<AdminContent role='admin' />} />
+        <Route path="/moderator" element={<ModeratorContent role='moderator'/>} />
         <Route path="/user" element={<UserContent />} />
       </Routes>
-      {/* <Login /> */}
-      {/* <Register /> */}
     </>
   )
 }

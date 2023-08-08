@@ -32,8 +32,9 @@ const verifyPermissions = async (requiredRole) => {
                     }
                 });
             } catch (refreshErr) {
-                console.log('Error al intentar generar un nuevo token de actualización')
-                console.log(refreshErr)
+                console.log(refreshErr?.response?.data?.message || 'Error al intentar generar un nuevo token de actualización')
+                localStorage.removeItem('user');
+                window.location.href = '/login';
                 throw refreshErr;
             }
         }

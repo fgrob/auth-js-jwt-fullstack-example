@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import './styles/NavBar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../services/auth.service';
 import { useUserContext } from '../contexts/UserContext';
 
 
 const NavBar = () => {
 
-    // const [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
-    const { currentUser } = useUserContext();
+    const { currentUser, setCurrentUser } = useUserContext();
+    const navigate = useNavigate();
 
     const logout = () => {
         authService.logout();
+        navigate('/login');
+        setCurrentUser(null);
     };
 
     return (
