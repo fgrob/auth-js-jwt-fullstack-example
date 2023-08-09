@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import UserService from '../services/user.service';
-import { useNavigate } from 'react-router-dom';
 
 const ModeratorContent = (requiredRole) => {
     const [modPermissions, setModPermissions] = useState(false);
@@ -35,7 +34,7 @@ const ModeratorContent = (requiredRole) => {
     return (
         <div>
             {modPermissions && (
-                <div style={{ color : 'green'}}> Estás viendo contenido exclusivo para Moderadores </div>
+                <div style={{ color : 'green'}}> You are viewing exclusive content for Moderators </div>
             )}
             {errorMessage && (
                 <div style={{ color: 'red'}}>{errorMessage}</div>

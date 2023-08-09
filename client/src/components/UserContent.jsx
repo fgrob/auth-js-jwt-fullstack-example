@@ -7,9 +7,9 @@ const UserContent = () => {
     return (
         <div>
             {currentUser ? (
-                <div style={{ color: 'green'}}>Contenido para usuarios logeados</div>
+                <div style={{ color: 'green'}}>Content for logged-in users</div>
             ):(
-                <div style={{ color: 'red'}}>Se requiere iniciar sesión para ver este contenido</div>
+                <div style={{ color: 'red'}}>Login is required to view this content</div>
             )}
         </div>        
     )

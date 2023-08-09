@@ -34,7 +34,7 @@ const AdminContent = (requiredRole) => {
     return (
         <div>
             {adminPermissions && (
-                <div style={{ color : 'green'}}> Estás viendo contenido exclusivo para Administradores </div>
+                <div style={{ color : 'green'}}> Your are viewing exclusive content for Administrators </div>
             )}
             {errorMessage && (
                 <div style={{ color: 'red'}}>{errorMessage}</div>

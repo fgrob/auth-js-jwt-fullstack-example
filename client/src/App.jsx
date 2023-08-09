@@ -14,7 +14,7 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route exact path={"/"} element={<div>Pagina de Inicio. No requiere estar logeado</div>} />
+        <Route exact path={"/"} element={<div>Homepage. No login or permissions required</div>} />
         <Route exact path={"/pot"} element={"mensaje"} /> 
         <Route exact path={"/login"} element={<Login />} />
         <Route exact path={"/register"} element={<Register />} />

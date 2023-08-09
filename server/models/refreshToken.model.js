@@ -11,10 +11,10 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
-    RefreshToken.createToken = async function (user) { // método estático
+    RefreshToken.createToken = async function (user) { // static model
         let expiredAt = new Date();
 
-        expiredAt.setSeconds(expiredAt.getSeconds() + config.jwtRefreshExpiration); // ajustar segundos: seg actual + seg expiration config
+        expiredAt.setSeconds(expiredAt.getSeconds() + config.jwtRefreshExpiration); // actual time in seconds + expiration seconds
 
         let _token = uuidv4();
 

@@ -33,7 +33,7 @@ const UserProfile = () => {
                     </div>
                 </>
             ) : (
-                <div style={{color: 'red'}}>Se requiere iniciar sesión para ver este contenido</div>
+                <div style={{color: 'red'}}>Login is required to view this content</div>
             )}
         </div>
     )

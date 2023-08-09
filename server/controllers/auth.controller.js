@@ -1,12 +1,9 @@
 const db = require('../models');
 const config = require('../config/auth.config');
-const { user: User, role: Role, refreshToken: RefreshToken } = db;
-
-const Op = db.Sequelize.Op; // op es un objeto de sequelize para utilizar operadores y condiciones en consultas
+const { user: User, refreshToken: RefreshToken } = db;
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { request } = require('express');
 
 const createAccessToken = async (user) => {
 
@@ -37,12 +34,11 @@ const signup = (req, res) => {
     })
         .then(user => {
             user.setRoles([1])
-                .then(() => { // Se añade el rol de 'user' (1) por defecto
-                    // res.send({ message: 'Usuario registrado con éxito'})
-                    res.status(200).send({ message: 'Usuario registrado exitosamente'})
+                .then(() => { // The 'user' role (1) is added by default
+                    res.status(200).send({ message: 'User successfully registered'})
                 })
-                .catch((err) => {
-                    res.send({ message: 'Usuario registrado pero ocurrió un error al intentar asignarle el rol por defecto'})
+                .catch(() => {
+                    res.send({ message: 'User successfully registered but an error ocurred while trying to assign the defualt role'})
                 })
         })
         .catch(err => {
@@ -59,13 +55,13 @@ const signin = async (req, res) => {
         });
 
         if (!user) {
-            return res.status(404).send({ message: 'El usuario no existe' });
+            return res.status(404).send({ message: 'The user does not exist' });
         }
 
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
         if (!passwordIsValid) {
-            return res.status(401).send({ message: 'Usuario y/o contraseña inválido'})
+            return res.status(401).send({ message: 'Invalid username and/or password'})
         }
 
         const token = await createAccessToken(user)
@@ -77,7 +73,7 @@ const signin = async (req, res) => {
             refreshToken: refreshToken
         });
     } catch (err) {
-        res.status(500).send({ message: err.message }) // 500: error genérico que indica problema interno del servidor
+        res.status(500).send({ message: err.message }) // 500: generic error indicating an internal server problem
     }
 }
 
@@ -88,18 +84,18 @@ const signout = (req, res) => {
         }
     })
         .then(() => {
-            res.status(200).json({ message: 'Token de actualización eliminado de la BBDD correctamente'});
+            res.status(200).json({ message: 'Refresh token successfully deleted from the database'});
         })
-        .catch((err) => {
-            res.status(500).json({ message: 'Error al intentar eliminar el Token de actualización'})
+        .catch(() => {
+            res.status(500).json({ message: 'Error while trying to delete the refresh token'})
         })
 };
 
-const accessTokenWithRefreshToken = async (req, res) => { // generador de token de acceso con token de actualización
+const accessTokenWithRefreshToken = async (req, res) => { // Access token generator with refresh token
     const { refreshToken : requestToken } = req.body;
 
     if (requestToken === null) {
-        return res.status(403).json({ message: 'Se requiere un token de actualización' }) // 403: Forbidden
+        return res.status(403).json({ message: 'A refresh token is required' }) // 403: Forbidden
     }
 
     try {
@@ -110,26 +106,26 @@ const accessTokenWithRefreshToken = async (req, res) => { // generador de token 
         });
 
         if (!refreshToken) {
-            res.status(403).json({ message: 'Token de actualización inválido' });
+            res.status(403).json({ message: 'Invalid refresh token' });
             return;
         }
 
-        if (RefreshToken.verifyExpiration(refreshToken)) { // si el token está expirado, lo borramos de la BBDD
+        if (RefreshToken.verifyExpiration(refreshToken)) { // If the token is expired, we delete it from the database
             RefreshToken.destroy({
                 where: {
                     id: refreshToken.id
                 }
             });
 
-            res.status(403).json({ message: 'Token de actualización expirado. Favor logearse nuevamente' });
+            res.status(403).json({ message: 'Refresh token expired. Please log in again' });
             return;
         }
 
-        // Si el token de actualización existe y no está expirado, entonces: 
+        // If the refresh token exists and is not expired, then:
         const user = await refreshToken.getUser();
         const newAccessToken = await createAccessToken(user);
 
-        // Actualizamos también el Token de Actualización (eliminando el antiguo y creando uno nuevo)
+        // We also update the refresh token (by deleting the old one and creating a new one)
         await RefreshToken.destroy({
             where: {
                 id: refreshToken.id
@@ -144,7 +140,7 @@ const accessTokenWithRefreshToken = async (req, res) => { // generador de token 
         });
         
     } catch (err) {
-        return res.status(500).send({ message: 'Hubo un error en el servidor al intentar generar un nuevo Token de acceso'})
+        return res.status(500).send({ message: 'There was a server error while trying to generate a new access token'})
     }
 };
 

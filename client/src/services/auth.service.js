@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 const API_URL = 'http://localhost:8080/api/auth/';
 
 const signup = (username, email, password) => {
-    return axios.post(API_URL + 'signup', { // se retorna la funcion completa, las respuestas y errores las manejo directamente en la invocación
+    return axios.post(API_URL + 'signup', { // the complete function is returned. Response and errors are handled directly upon invocation
         username,
         email,
         password
@@ -18,17 +18,17 @@ const signin = (username, password) => {
         password
     })
     .then((res) => {
-        if (res.data.accessToken) { // si la respuesta contiene un accessToken, entonces fue un login exitoso. PROBAR ESTO!
-            localStorage.setItem('user', JSON.stringify(res.data)); // guardamos el accessToken y el refreshToken en local
+        if (res.data.accessToken) { // if the response contains an accessToken, then the login was successful
+            localStorage.setItem('user', JSON.stringify(res.data)); // save the accessToken and refreshToken locally
             return;
         } else {
-            throw res.data // capturamos el status y mensaje del error para que sea manejando por el siguiente catch de la cadena (que está ubicado en la invocación)
+            throw res.data // Capture the status and error message to be handled by the next catch in the chain (located where the invocation is)
         }
     })
 };
 
 const getCurrentUser = () => {
-    const token = JSON.parse(localStorage.getItem('user'))?.accessToken; // obtenemos el token de acceso en caso de que exista
+    const token = JSON.parse(localStorage.getItem('user'))?.accessToken; // retrieve the access token if it exists.
     if (token) {
         const decodedToken = jwt_decode(token);
         return {

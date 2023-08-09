@@ -1,5 +1,5 @@
 module.exports = {
-    secret: 'secretojwt',
-    jwtExpiration: 2, // (segundos)
-    jwtRefreshExpiration: 7,
+    secret: 'secretjwt',
+    jwtExpiration: 15, // seconds
+    jwtRefreshExpiration: 30,
 };

@@ -4,23 +4,23 @@ const db = require('../models');
 const User = db.user;
 const { TokenExpiredError } = jwt;
 
-const verifyToken = (req, res, next) => { // para verificar si el token de acceso está vigente
+const verifyToken = (req, res, next) => { 
     let token = req.headers['x-access-token'];
 
     if (!token) {
-        return res.status(403).send({ message: 'No se proporcionó Token'}) // 403: Forbidden
+        return res.status(403).send({ message: 'No token provided'}) // 403: Forbidden
     }
 
     jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
-            if (err instanceof TokenExpiredError) { // si el error capturado pertenece al objeto TokenExpiredError de jwt
-                return res.status(401).send({ message: 'Token de acceso expirado'}) // 401: Unauthorized
+            if (err instanceof TokenExpiredError) { // if the captured error belongs to the TokenExpiredError object in jwt
+                return res.status(401).send({ message: 'Access token expired'}) // 401: Unauthorized
             }
 
-            return res.sendStatus(401) // sendStatus lo usamos para enviar solamente el status (cuerpo vacío). Aplica en este caso pues hubo un error desconocido asociado al cliente (4xx)
+            return res.sendStatus(401) 
         }
 
-        req.userId = decoded.id; // asignamos el id decodificado a la respuesta para usarlo en los siguientes middlewares
+        req.userId = decoded.id; // assing the decoded ID to the response to use in the following middlewares
         next();
     });
 };
@@ -35,7 +35,7 @@ const isAdmin = (req, res) => {
                 }
             }
 
-            res.status(403).send({ message: 'No tiene los permisos necesarios para acceder a este recurso'}); // 403: Forbidden
+            res.status(403).send({ message: 'You do not have the necessary permissions to access this resource'}); // 403: Forbidden
             return;
         });
     });
@@ -51,7 +51,7 @@ const isModerator = (req, res, next) => {
                 }
             }
 
-            res.status(403).send({ message: 'No tiene los permisos necesarios para acceder a este recurso'}); // 403: Forbidden
+            res.status(403).send({ message: 'You do not have the necessary permissions to access this resource'}); // 403: Forbidden
             return;
         });
     });

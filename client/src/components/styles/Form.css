@@ -4,9 +4,7 @@
 
 
   .form-container {
-    /* width: 100%; */
     padding: 1rem;
-    /* border: 1px solid #ccc; */
     border-radius: 8px;
   }
   
@@ -40,10 +38,9 @@
   }
 
   .error-message {
-    color: #ff0000; /* Color rojo para el texto del error */
-    font-size: 16px; /* Tamaño de fuente del mensaje de error */
-    /* font-weight: bold; Texto en negrita para resaltarlo */
-    margin: 10px 0; /* Margen superior e inferior para separar del contenido circundante */
+    color: #ff0000;
+    font-size: 16px;
+    margin: 10px 0; 
   }
 
   .success-message {
