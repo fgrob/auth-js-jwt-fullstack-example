@@ -26,13 +26,12 @@ This repository contains an example of a full stack application that demonstrate
 ## Setup
 
 1. Clone this repository: `git clone <repository URL>`
-2. Navigate to the project folder: `cd <folder name>`
+2. Navigate to the project folder: `cd js-auth-jwt`
 3. Install frontend dependencies: `cd client && npm install`
-4. Install backend dependencies: `cd ../server && npm install`
-5. Configure the PostgreSQL database and update the configuration in the `server/config/config.json` file.
-6. Run migrations to create database tables: `npx sequelize-cli db:migrate`
-7. Start the backend server: `npm start` from the `server` folder.
-8. Start the frontend application: `npm start` from the `client` folder.
+4. Install backend dependencies: `cd server && npm install`
+5. Configure the PostgreSQL database and update the configuration in the `server/config/db.config.js` file.
+6. Start the backend server: `npm run start` from the `server` folder.
+7. Start the frontend application: `npm run dev` from the `client` folder.
 
 ## Contribution
 
