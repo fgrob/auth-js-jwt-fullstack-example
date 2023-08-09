@@ -1,4 +1,4 @@
-# Example of Full Stack User Authentication and Permissions System in React and Node JS
+# Full Stack User Authentication and Permissions System in React and Node JS with JSON Web Tokens
 
 This repository contains an example of a full stack application that demonstrates a user authentication system with access permissions functionality. The application allows users to register, log in, and access protected routes based on their assigned roles.
 
