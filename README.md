@@ -31,9 +31,9 @@ This repository contains an example of a full stack application that demonstrate
 4. Install backend dependencies: `cd server && npm install`
 5. Configure the PostgreSQL database and update the configuration in the `server/config/db.config.js` file.
 6. **Create Initial Roles**: To set up the basic required roles, uncomment the `initial()` function (and his declaration) in the `server.js` file. This step is necessary the first time you run the program. You can also add other initial data, such as test users with specific roles, if needed, in `server/models/testModels.js` file.
-7. Start the backend server: `npm run start` from the `server` folder.
-8. Start the frontend application: `npm run dev` from the `client` folder.
-9. **Custom Token Lifespans**: To edit the lifespan of access and refresh tokens, modify the values in `server/config/auth.config.js` file.
+7. **Custom Token Lifespans**: To edit the lifespan of access and refresh tokens, modify the values in `server/config/auth.config.js` file.
+8. Start the backend server: `npm run start` from the `server` folder.
+9. Start the frontend application: `npm run dev` from the `client` folder.
 
 ## Contribution
 
