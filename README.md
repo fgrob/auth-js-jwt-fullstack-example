@@ -35,6 +35,27 @@ This repository contains an example of a full stack application that demonstrate
 8. Start the backend server: `npm run start` from the `server` folder.
 9. Start the frontend application: `npm run dev` from the `client` folder.
 
+# USE
+
+1. **Create a New User Account**
+   - Navigate to the Sign Up page
+   - Create a new user account by providing the required information
+   - By default, new users are automatically assigned the 'user' role
+
+2. **Understanding Roles**
+   - The system comes with three default roles:
+     - user
+     - moderator
+     - admin
+   - These roles are automatically created in the database during initial setup
+
+3. **Assigning Additional Roles**
+   - To assign additional roles to a user:
+     - Access your database management tool
+     - Locate the `user_roles` table
+     - Add a new entry with the user's ID and the desired role ID
+     - One user can have multiple roles by adding multiple entries
+
 ## Contribution
 
 If you wish to contribute to this project, feel free to do so through pull requests. You can also report issues and suggest improvements.
